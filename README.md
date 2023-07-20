@@ -9,6 +9,7 @@ The quality is really good!
 * Send voice messages to people who don't speak your language
 * Transcribe any audio by simply sharing it on Telegram
 * Transcribe people's voice messages
+* Not just English: works with most languages
 
 You will need to setup the bot and host it yourself. Fortunately, it's not too difficult.
 
