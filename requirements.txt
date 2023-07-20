@@ -1,0 +1,4 @@
+boto3==1.28.5
+openai==0.27.8
+python-dotenv==1.0.0
+python-telegram-bot==20.4
