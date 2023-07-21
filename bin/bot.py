@@ -37,7 +37,7 @@ def start_polling():
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_markdown(f'''Welcome!
+    await update.message.reply_text(f'''Welcome!
 Use the /password command to authorize this chat. You only have to do it once for each chat.
 ''')
 
@@ -53,9 +53,9 @@ async def password(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         # If the password is correct, add the chat to the list of authorized chats
         authorized_chats.append(chat_id)
         connector.write(AUTHORIZED_CHATS_FILE, authorized_chats)
-        await update.message.reply_markdown("Success! This chat is now authorized to use the bot.")
+        await update.message.reply_text("Success! This chat is now authorized to use the bot.")
     else:
-        await update.message.reply_markdown("Incorrect password.")
+        await update.message.reply_text("Incorrect password.")
 
 
 async def handle_voice_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -63,7 +63,7 @@ async def handle_voice_message(update: Update, context: ContextTypes.DEFAULT_TYP
     chat_id = str(update.effective_chat.id)
 
     if chat_id not in authorized_chats:
-        await update.message.reply_markdown("Chat not authorized yet. Use the /password command to authorize.")
+        await update.message.reply_text("Chat not authorized yet. Use the /password command to authorize.")
         return
 
     voice = update.message.voice
