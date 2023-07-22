@@ -6,12 +6,21 @@ import openai
 load_dotenv()
 WHISPER_MODEL = "whisper-1"
 openai.api_key = os.environ["OPENAI_API_KEY"]
+"Hello, this is a properly structured message. GPT, ChatGPT."
 
 
-def transcribe_whisper(filepath: str) -> str:
+def apply_whisper(filepath: str, mode: str) -> str:
+
+    if mode not in ("translate", "transcribe"):
+        raise ValueError(f"Invalid mode: {mode}")
+
+    prompt = "Hello, this is a properly structured message. GPT, ChatGPT."
+
     with open(filepath, "rb") as audio_file:
-        response = openai.Audio.transcribe(WHISPER_MODEL,
-                                           audio_file,
-                                           prompt="Hello, this is a properly structured message. GPT, ChatGPT.")
+        if mode == "translate":
+            response = openai.Audio.translate(WHISPER_MODEL, audio_file, prompt=prompt)
+        elif mode == "transcribe":
+            response = openai.Audio.transcribe(WHISPER_MODEL, audio_file, prompt=prompt)
+
     transcript = response["text"]
     return transcript
