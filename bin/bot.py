@@ -59,13 +59,16 @@ async def password(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         await update.message.reply_text("Incorrect password.")
 
 
-def set_whisper_mode(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def set_whisper_mode(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = str(update.effective_chat.id)
     selected_mode = ' '.join(update.message.text.split()[1:]).lower()
     if selected_mode not in ("transcribe", "translate"):
         await update.message.reply_text("Error. mode should be either 'transcribe' or 'translate'")
         return
-    chats_data.get(chat_id, {})["mode"] = selected_mode
+    if chat_id not in chats_data:
+        chats_data[chat_id] = {"mode": selected_mode}
+    else:
+        chats_data[chat_id]["mode"] = selected_mode
     connector.write(CHATS_DATA_FILE, chats_data)
     await update.message.reply_text(f"Success! Whisper mode set to {selected_mode}")
 
