@@ -4,7 +4,14 @@ WhisperBot is a simple Telegram wrapper over OpenAI's [Whisper](https://openai.c
 
 Send voice messages to WhisperBot and it will transcribe them for you. It works really well.
 
-WhisperBot uses the `transcribe` endpoint. Whisper will identify the language of your voice message
+WhisperBot can use two modes:
+
+* The `transcribe` endpoint, which accurately transcribes the message in its original language. 
+* The `translate` endpoint, which translates the message to English regardless of the language.
+
+Use `/mode transcribe` or `/mode translate` to switch between the two modes.
+
+Whisper will identify the language of your voice message
 and transcribe it accurately into that language.
 
 Use cases:
@@ -34,6 +41,11 @@ STORAGE=<currently can be either s3 or local>
 ```
 
 Run `python bin/bot.py` to start the bot. That's it! 
+
+## Storage
+WhisperBot remembers which chats are authorized and the mode for each chat. 
+This information is stored in a simple JSON file. The STORAGE variable in `.env` determines where this file is stored.
+Currently it can be either `local` or `s3`. If you choose `s3`, you need to provide the name of your S3 bucket in `.env`.
 
 # How can I deploy the bot?
 
