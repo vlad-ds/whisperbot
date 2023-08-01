@@ -6,7 +6,6 @@ import openai
 load_dotenv()
 WHISPER_MODEL = "whisper-1"
 openai.api_key = os.environ["OPENAI_API_KEY"]
-"Hello, this is a properly structured message. GPT, ChatGPT."
 
 
 def apply_whisper(filepath: str, mode: str) -> str:
