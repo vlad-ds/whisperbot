@@ -40,13 +40,26 @@ S3_BUCKET_NAME=<the name of your S3 bucket (only if you use S3 as storage)>
 STORAGE=<currently can be either s3 or local>
 ```
 
-Run `python bin/bot.py` to start the bot. That's it! 
+Run `python bin/bot.py` to start the bot. That's it!
+
+## Usage
+The first time you use the bot, you need to authorize the chat. Write `/password` followed by the password you set in `.env`. 
+
+If you want other users to use the bot, you can share the password with them. 
+
+You can also add your bot to grup chats and have it translate voice messages there. You need to authorize this in your bot's settings. Go to BotFather on Telegram and write /mybots. Select your bot and then "Bot Settings". Allow Groups and turn Group Privacy off.  
 
 ## Storage
 WhisperBot remembers which chats are authorized and the mode for each chat. 
 This information is stored in a simple JSON file. The STORAGE variable in `.env` determines where this file is stored.
 Currently it can be either `local` or `s3`. If you choose `s3`, you need to provide the name of your S3 bucket in `.env`.
 
-# How can I deploy the bot?
+## How can I deploy the bot?
 
 See my short guide [here](https://gist.github.com/vlad-ds/b098af8260d57a4490efed68bae50a78).
+
+## Liabilities
+* You will incur some cost for using the Whisper API. You can set a monthly budget in your OpenAI account.
+* Do not operate the bot without a password as it will allow anyone to indirectly use your OpenAI API key.
+* Do not send questionable content to Whisper or you will risk getting your OpenAI API key banned. 
+* For the same reason, do not share this bot with people you don't trust.
